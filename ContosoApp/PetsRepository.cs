@@ -1,6 +1,6 @@
 ﻿namespace ContosoApp;
 
-internal class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
+public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
 {
     // Defining a dictionary to store the animal and its attributes data.
     private Dictionary<Guid, Pet> ourPets;

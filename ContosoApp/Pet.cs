@@ -1,6 +1,6 @@
 ﻿namespace ContosoApp;
 
-public class Pet
+public sealed class Pet
 {
     // Defining private properties to encapsulate the data accessibility
     public string? AnimalID { get; set; }

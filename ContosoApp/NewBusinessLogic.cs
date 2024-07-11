@@ -1,6 +1,6 @@
 ﻿namespace ContosoApp;
 
-internal class NewBusinessLogic
+public sealed class NewBusinessLogic
 {
     private PetsRepository? _repo;
     private DisplayPets? _stdout;

@@ -1,6 +1,6 @@
 ﻿namespace ContosoApp;
 
-internal class PetManager
+public sealed class PetManager
 {
     string? readResult = "";
     bool validEntry = false;
