@@ -1,18 +1,7 @@
 ﻿namespace ContosoApp;
 
-public sealed class DisplayPets
+public sealed class PetShopConsoleFrontend
 {
-    public void DisplayPetInformation(Pet pet)
-        => Console.WriteLine(pet.ToString());
-
-    public void ProvideUserAllItems(IEnumerable<Pet> animals)
-    {
-        foreach (var animal in animals)
-        {
-            DisplayPetInformation(animal);
-        }
-    }
-
     public void CreatePet(Pet pet)
     {
         string readResult;
@@ -27,7 +16,7 @@ public sealed class DisplayPets
             if (readResult != null)
             {
                 pet.AnimalSpecies = readResult.ToLower();
-                PetManager.MakePet(ref validEntry, readResult);
+                TODO_Refactor.MakePet(ref validEntry, readResult);
                 //validEntry = pet.AnimalSpecies == "dog" || pet.AnimalSpecies == "cat" || pet.AnimalSpecies == "rabbit";
             }
 
@@ -104,6 +93,9 @@ public sealed class DisplayPets
         } while (pet.AnimalNickname == "");
     }
 
+    public void DisplayPetInformation(Pet pet)
+        => Console.WriteLine(pet.ToString());
+
     public void EditCompleteAge(Pet age, PetsRepository petRepository)
     {
         string readResult;
@@ -135,5 +127,13 @@ public sealed class DisplayPets
                 }
             }
         } while (validEntry == false);
+    }
+
+    public void ProvideUserAllItems(IEnumerable<Pet> animals)
+    {
+        foreach (var animal in animals)
+        {
+            DisplayPetInformation(animal);
+        }
     }
 }

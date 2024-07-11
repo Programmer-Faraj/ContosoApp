@@ -3,17 +3,17 @@
 public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
 {
     // Defining a dictionary to store the animal and its attributes data.
-    private Dictionary<Guid, Pet> ourPets;
+    private Dictionary<Guid, Pet> _petsStorage;
 
     public PetsRepository()
     {
-        ourPets = new Dictionary<Guid, Pet>();
+        _petsStorage = new Dictionary<Guid, Pet>();
     }
 
     public void AddPet(Pet pet)
     {
         //string animalID = GetNextID().ToString();
-        ourPets.Add(Guid.NewGuid(), pet);
+        _petsStorage.Add(Guid.NewGuid(), pet);
     }
 
     // The business logic
@@ -21,7 +21,7 @@ public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
     public void FindPetById(string petId)
     {
     //PetsRepository petID = new PetsRepository();
-        foreach (var ID in ourPets.Keys)
+        foreach (var ID in _petsStorage.Keys)
         {
             if (ID.ToString() == petId)
             {
@@ -31,7 +31,7 @@ public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
     }
 
     public IEnumerable<Pet> GetAllPets()
-        => ourPets.Values;
+        => _petsStorage.Values;
 }
 
 /*public int GetNextID()
