@@ -15,10 +15,8 @@ public sealed class PetShopConsoleFrontend
             if (readResult != null)
             {
                 newPet.AnimalSpecies = readResult.ToLower();
-                TODO_Refactor.MakePet(ref validEntry, readResult);
-                //validEntry = pet.AnimalSpecies == "dog" || pet.AnimalSpecies == "cat" || pet.AnimalSpecies == "rabbit";
+                validEntry = Validator.IsValidSpecies(readResult);
             }
-
         } while (validEntry == false);
 
         // get the pet's age. can be ? at initial entry.
@@ -98,36 +96,18 @@ public sealed class PetShopConsoleFrontend
     public void DisplayPetInformation(Pet pet)
         => Console.WriteLine(pet.ToString());
 
-    public void EditCompleteAge(Pet age)
+    public Guid FindPetById()
     {
+        Guid parsed;
         string readResult;
-        bool validEntry = false;
 
         do
         {
             Console.WriteLine("Enter pet ID: ");
             readResult = Console.ReadLine();
-            // deleted the extra pet object
-            //UNDONE petRepository.FindPetById(readResult);
+        } while (Guid.TryParse(readResult, out parsed) == false);
 
-            Console.WriteLine("Complete pet age: ");
-            readResult = Console.ReadLine();
-
-            if (readResult != null)
-            {
-                age.AnimalAge = readResult;
-
-                if (age.AnimalAge == null || age.AnimalAge == "?")
-                {
-                    validEntry = int.TryParse(age.AnimalAge, out var petAge);
-                }
-
-                else
-                {
-                    validEntry = true;
-                }
-            }
-        } while (validEntry == false);
+        return Guid.Parse(readResult);
     }
 
     public void ProvideUserAllItems(IEnumerable<Pet> animals)
@@ -136,5 +116,35 @@ public sealed class PetShopConsoleFrontend
         {
             DisplayPetInformation(animal);
         }
+    }
+
+    public int? UpdateAge(Pet pet)
+    {
+        Console.WriteLine($"Complete age for pet '{pet.AnimalNickname}': ");
+
+        int? newAge = null;
+        bool valid = false;
+
+        do
+        {
+            var readResult = Console.ReadLine();
+
+            switch (readResult)
+            {
+                case null:
+                case "?":
+                    newAge = null;
+                    valid = true;
+                    break;
+
+                case string when int.TryParse(readResult, out var petAge):
+                    newAge = petAge;
+                    valid = true;
+                    break;
+            }
+        }
+        while (false == valid);
+
+        return newAge;
     }
 }

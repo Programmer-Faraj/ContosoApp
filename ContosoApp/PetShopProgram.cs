@@ -65,8 +65,10 @@ public sealed class PetShopProgram
                     break;
 
                 case "5":
-                    var incompletePet = new Pet();
-                    _frontendConsole.EditCompleteAge(incompletePet);
+                    var petId = _frontendConsole.FindPetById();
+                    var pet = _petsRepository.FindPetById(petId);
+                    var newAge = _frontendConsole.UpdateAge(pet);
+                    _petsRepository.UpdatePet(petId, newAge);
                     Console.WriteLine("The animal age is complete");
                     readResult = Console.ReadLine();
                     break;

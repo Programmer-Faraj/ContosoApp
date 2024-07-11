@@ -1,27 +1,28 @@
 ﻿namespace ContosoApp;
 
-public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
+public sealed class PetsRepository
 {
-    private readonly Dictionary<Guid, Pet> _petsStorage = new Dictionary<Guid, Pet>();
+    private readonly Dictionary<Guid, Pet> _petsStorage = new();
 
     public void AddPet(Pet pet)
     {
         _petsStorage.Add(Guid.NewGuid(), pet);
     }
 
-    public void FindPetById(string petId)
+    public Pet? FindPetById(Guid petId)
     {
-        foreach (var id in _petsStorage.Keys)
-        {
-            if (id.ToString() != petId)
-            {
-                continue;
-            }
-
-            // UNDONE
-        }
+        _petsStorage.TryGetValue(petId, out Pet? pet);
+        return pet;
     }
 
     public IEnumerable<Pet> GetAllPets()
         => _petsStorage.Values;
+
+    public void UpdatePet(Guid petId, int? age)
+    {
+        if (false == _petsStorage.TryGetValue(petId, out Pet? pet))
+            throw new ArgumentException("Pet not found", nameof(petId));
+
+        pet.AnimalAge = age.ToString();
+    }
 }
