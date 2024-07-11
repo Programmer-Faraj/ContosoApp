@@ -22,23 +22,26 @@ public sealed class PetShopConsoleFrontend
         // get the pet's age. can be ? at initial entry.
         do
         {
-            int petAge;
             Console.WriteLine("Enter the pet's age or enter ? if unknown");
             readResult = Console.ReadLine();
 
-            if (readResult != null)
+            if (readResult == null)
             {
-                newPet.AnimalAge = readResult;
-                if (newPet.AnimalAge != "?")
-                {
-                    validEntry = int.TryParse(newPet.AnimalAge, out petAge);
-                }
-                else
-                {
-                    validEntry = true;
-                }
+                continue;
             }
 
+            switch (readResult)
+            {
+                case "?":
+                    newPet.AnimalAge = null;
+                    validEntry = true;
+                    break;
+
+                case string when int.TryParse(readResult, out var petAge):
+                    newPet.AnimalAge = petAge;
+                    validEntry = true;
+                    break;
+            }
         } while (validEntry == false);
 
         // get a description of the pet's physical appearance/condition - animalPhysicalDescription can be blank.

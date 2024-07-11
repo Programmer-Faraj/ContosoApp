@@ -23,6 +23,6 @@ public sealed class PetsRepository
         if (false == _petsStorage.TryGetValue(petId, out Pet? pet))
             throw new ArgumentException("Pet not found", nameof(petId));
 
-        pet.AnimalAge = age.ToString();
+        pet.AnimalAge = age;
     }
 }
