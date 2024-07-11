@@ -18,7 +18,7 @@ namespace ContosoApp
             // Add animal friend to the ourAnimals dictionary
             Pet pet = new Pet();
             PetsRepository repository = new PetsRepository();
-            DisplayPets pets = new DisplayPets();   
+            DisplayPets pets = new DisplayPets();
             NewBusinessLogic allPets = new NewBusinessLogic(repository, pets);
             do
             {
@@ -43,8 +43,8 @@ namespace ContosoApp
                 {
                     menuSelection = readResult.ToLower();
                     // NOTE: We could put a do statement around the menuSelection entry to ensure a valid entry, but we
-                    //  use a conditional statement below that only processes the valid entry values, so the do statement 
-                    //  is not required here. 
+                    //  use a conditional statement below that only processes the valid entry values, so the do statement
+                    //  is not required here.
                 }
 
                 // use switch-case to process the selected menu option
@@ -64,7 +64,7 @@ namespace ContosoApp
                         break;
 
                     case "3":
-                        
+
                         break;
 
                     case "4":

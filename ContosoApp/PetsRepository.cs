@@ -16,14 +16,12 @@ namespace ContosoApp
             ourPets = new Dictionary<Guid, Pet>();
         }
 
-        
         public IEnumerable<Pet> GetAllPets() => ourPets.Values;
 
         public void AddPet(Pet pet)
         {
-       
-                //string animalID = GetNextID().ToString();
-                ourPets.Add(Guid.NewGuid(), pet);
+            //string animalID = GetNextID().ToString();
+            ourPets.Add(Guid.NewGuid(), pet);
         }
 
         // The business logic
@@ -40,21 +38,20 @@ namespace ContosoApp
             }
             return this;
         }
-
     }
 }
 
 /*public int GetNextID()
-            {
-            // Generating an ID for the animals
-                Guid IDnumber = new Guid();
-                int generatedNumber = IDnumber;
-                return generatedNumber;
-            }*/
+{
+// Generating an ID for the animals
+    Guid IDnumber = new Guid();
+    int generatedNumber = IDnumber;
+    return generatedNumber;
+}*/
 /*Random IDnumber = Random.Shared;
   int generatedNumber = IDnumber.Next(100, 1000);
 
   return generatedNumber;*/
 
 /*string animalID = GetNextID().ToString();
-                ourPets?.Add(animalID, pet);*/
+    ourPets?.Add(animalID, pet);*/

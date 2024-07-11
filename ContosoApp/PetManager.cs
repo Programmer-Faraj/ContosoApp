@@ -11,7 +11,7 @@ namespace ContosoApp
         string? readResult = "";
         bool validEntry = false;
         int petAge = 0;
-        
+
         // Defining a method that creates animal species
         public void CreatePet(Pet pet)
         {
@@ -26,7 +26,7 @@ namespace ContosoApp
                     MakePet();
                     //validEntry = pet.AnimalSpecies == "dog" || pet.AnimalSpecies == "cat" || pet.AnimalSpecies == "rabbit";
                 }
-                
+
             } while (validEntry == false);
 
             // get the pet's age. can be ? at initial entry.
@@ -101,10 +101,9 @@ namespace ContosoApp
         }
 
         // Defining a method to take user input for physical description if it's left empty
-       
-        /****** soon *******/ 
-        
-        
+
+        /****** soon *******/
+
         public PetsRepository EditCompleteAge(Pet age, PetsRepository petRepository)
         {
             // Searching for a specific pet by ID
@@ -138,18 +137,18 @@ namespace ContosoApp
                 return petRepository;
 
             } while (validEntry == false);
-            
-           /* do
-            {
-                Console.WriteLine("Complete pet age: ");
-                readResult= Console.ReadLine();
 
-                if (readResult != null)
-                {
-                    validEntry = int.TryParse(readResult, out petAge);
-                }
+            /* do
+             {
+                 Console.WriteLine("Complete pet age: ");
+                 readResult= Console.ReadLine();
 
-            } while (validEntry == false);*/
+                 if (readResult != null)
+                 {
+                     validEntry = int.TryParse(readResult, out petAge);
+                 }
+
+             } while (validEntry == false);*/
         }
 
         public void MakePet()
@@ -264,10 +263,10 @@ namespace ContosoApp
 
         public void CompletePetAge()
         {
-              
+
         }
 
-     
+
         // Defining a method to take user input for physical description if it's left empty
         public PetsRepository EditCompleteDescriptions()
         {

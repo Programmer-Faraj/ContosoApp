@@ -17,6 +17,5 @@ namespace ContosoApp
         public string? AnimalNickname { get; set; }
 
         public override string ToString() => $"{AnimalID} {AnimalSpecies} {AnimalAge} {AnimalPhysicalDescription} {AnimalPersonalityDescription} {AnimalNickname}";
-      
     }
 }
