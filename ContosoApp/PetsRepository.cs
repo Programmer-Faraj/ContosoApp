@@ -1,60 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ContosoApp;
 
-namespace ContosoApp
+public sealed class PetsRepository
 {
-    internal class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
+    private readonly Dictionary<Guid, Pet> _petsStorage = new();
+
+    public void AddPet(Pet pet)
     {
-        // Defining a dictionary to store the animal and its attributes data.
-        private Dictionary<Guid, Pet> ourPets;
+        _petsStorage.Add(Guid.NewGuid(), pet);
+    }
 
-        public PetsRepository()
-        {
-            ourPets = new Dictionary<Guid, Pet>();
-        }
+    public Pet? FindPetById(Guid petId)
+    {
+        _petsStorage.TryGetValue(petId, out Pet? pet);
+        return pet;
+    }
 
-        
-        public IEnumerable<Pet> GetAllPets() => ourPets.Values;
+    public IEnumerable<Pet> GetAllPets()
+        => _petsStorage.Values;
 
-        public void AddPet(Pet pet)
-        {
-       
-                //string animalID = GetNextID().ToString();
-                ourPets.Add(Guid.NewGuid(), pet);
-        }
+    public void UpdatePet(Guid petId, int? age)
+    {
+        if (false == _petsStorage.TryGetValue(petId, out Pet? pet))
+            throw new ArgumentException("Pet not found", nameof(petId));
 
-        // The business logic
-        // Defining a method that is resposible mplementing for searching and finding pets by ID
-        public PetsRepository FindPetById(string petId)
-        {
-        //PetsRepository petID = new PetsRepository();
-            foreach (var ID in ourPets.Keys)
-            {
-                if (ID.ToString() == petId)
-                {
-                    Console.WriteLine($"The animal ID is: {petId}");
-                }
-            }
-            return this;
-        }
-
+        pet.AnimalAge = age;
     }
 }
-
-/*public int GetNextID()
-            {
-            // Generating an ID for the animals
-                Guid IDnumber = new Guid();
-                int generatedNumber = IDnumber;
-                return generatedNumber;
-            }*/
-/*Random IDnumber = Random.Shared;
-  int generatedNumber = IDnumber.Next(100, 1000);
-
-  return generatedNumber;*/
-
-/*string animalID = GetNextID().ToString();
-                ourPets?.Add(animalID, pet);*/

@@ -122,7 +122,7 @@ namespace TestingCode
                         pet.AnimalAge = readResult.Trim().ToLower();
                         validEntry = int.TryParse(pet.AnimalAge, out petAge);
                     }
-                    
+
                 } while (!validEntry);
             }
            /* else if (string.IsNullOrEmpty(pet.AnimalAge))
@@ -139,7 +139,7 @@ namespace TestingCode
          foreach (var age in ages)
          {
              Console.WriteLine($"The animal complete age is {ages[0]}");
-         } 
+         }
      }
  }*/
 
@@ -157,7 +157,7 @@ namespace TestingCode
     {
         static void Main(string[] args)
         {
-           
+
             // ************* Exercise - Complete a challenge activity to improve code readability *************
             /* The following code has a message
                and the letters are being reversed
@@ -166,27 +166,27 @@ namespace TestingCode
             */
 
             string originalMessage = "The quick brown fox jumps over the lazy dog.";
-            
+
             char[] convertedMessage = originalMessage.ToCharArray();
             Array.Reverse(convertedMessage);
 
             int letterCount = 0;
-            
-            foreach (char letter in convertedMessage) 
-            {  
-               if (letter == 'o') 
+
+            foreach (char letter in convertedMessage)
+            {
+               if (letter == 'o')
                {
                     letterCount++;
-               } 
+               }
             }
-            
+
             string newMessage = new String(convertedMessage);
-            
+
             Console.WriteLine(newMessage);
             Console.WriteLine($"'o' appears {letterCount} times.");
 
             Pet pet = new Pet();
-            pet.
+            //pet.
         }
 
         // ************* Exercise - Use whitespace to make your code easier to read *************
@@ -236,7 +236,7 @@ namespace TestingCode
 
         /*
           The following code creates five random OrderIDs
-          to test the fraud detection process.  OrderIDs 
+          to test the fraud detection process.  OrderIDs
           consist of a letter from A to E, and a three
           digit number. Ex. A123.
         */
@@ -385,7 +385,7 @@ namespace TestingCode
             Console.WriteLine($"Renew now and save {10}%!");
         }
 
-        else if (daysUntilExpiration <= 10) 
+        else if (daysUntilExpiration <= 10)
         {
 
             Console.WriteLine("Your subscription will expire soon. Renew now!");
@@ -396,7 +396,7 @@ namespace TestingCode
             Console.WriteLine();
         }
 
-        else 
+        else
         {
             Console.WriteLine("Your subscription has expired.");
         }*/
@@ -464,7 +464,7 @@ namespace TestingCode
         {
             Console.WriteLine("You won a trip");
         }
-        else 
+        else
         {
             Console.WriteLine("You won a kitten");
         }*/
@@ -768,7 +768,7 @@ public class Program
 
         // Retrieving the property causes the 'get' access
         // or to be called.
-       /* Console.WriteLine($"Time in hours: {t.Hours}"); 
+       /* Console.WriteLine($"Time in hours: {t.Hours}");
     }
 }*/
         // The example displays the following output:
