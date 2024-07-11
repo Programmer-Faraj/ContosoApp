@@ -5,92 +5,8 @@ class Program
 {
     public static void Main(string[] args)
     {
-        string readResult;
-        string? menuSelection = "";
-
-        PetManager parsePet = new PetManager();
-        // Add animal friend to the ourAnimals dictionary
-        Pet pet = new Pet();
-        PetsRepository repository = new PetsRepository();
-        DisplayPets pets = new DisplayPets();
-        NewBusinessLogic allPets = new NewBusinessLogic(repository, pets);
-        do
-        {
-            Console.Clear();
-
-            Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
-            Console.WriteLine(" 1. List all of our current pet information");
-            Console.WriteLine(" 2. Add a new animal friend to the ourAnimals dictionary");
-            Console.WriteLine(" 3. Ensure animal ages and physical descriptions are complete");
-            Console.WriteLine(" 4. Ensure animal nicknames and personality descriptions are complete");
-            Console.WriteLine(" 5. Edit an animal’s age");
-            Console.WriteLine(" 6. Edit an animal’s personality description");
-            Console.WriteLine(" 7. Display all cats with a specified characteristic");
-            Console.WriteLine(" 8. Display all dogs with a specified characteristic");
-            Console.WriteLine();
-            Console.WriteLine("Enter your selection number (or type Exit to exit the program)");
-
-            // display the top-level menu options
-
-            readResult = Console.ReadLine();
-            if (readResult != null)
-            {
-                menuSelection = readResult.ToLower();
-                // NOTE: We could put a do statement around the menuSelection entry to ensure a valid entry, but we
-                //  use a conditional statement below that only processes the valid entry values, so the do statement
-                //  is not required here.
-            }
-
-            // use switch-case to process the selected menu option
-            switch (menuSelection)
-            {
-                case "1":
-                    allPets.ProvideUserAllItems();
-                    Console.WriteLine("Press the Enter key to continue.");
-                    readResult = Console.ReadLine();
-                    break;
-
-                case "2":
-                    repository.AddPet(pet);
-                    parsePet.CreatePet(pet);
-                    Console.WriteLine("Press the Enter key to continue.");
-                    readResult = Console.ReadLine();
-                    break;
-
-                case "3":
-
-                    break;
-
-                case "4":
-
-                    Console.WriteLine("The animal physical descriptions are complete");
-                    readResult = Console.ReadLine();
-                    break;
-
-                case "5":
-                    parsePet.EditCompleteAge(pet, repository);
-                    Console.WriteLine("The animal age is complete");
-                    readResult = Console.ReadLine();
-                    break;
-
-                case "6":
-
-                    break;
-
-                case "7":
-
-                    break;
-
-                case "8":
-
-                    break;
-
-                default:
-
-                    break;
-            }
-
-        } while (menuSelection != "exit");
+        var psp = new PetShopProgram();
+        psp.Run();
     }
 }
 
@@ -181,7 +97,7 @@ throw new Exception();
          collection.Add(item);
      }
  }
-
+/
  return true;
 }
 */
