@@ -48,9 +48,8 @@ public sealed class PetShopProgram
                     break;
 
                 case "2":
-                    var newPet = new Pet();
+                    var newPet = _frontendConsole.CreatePet();
                     _petsRepository.AddPet(newPet);
-                    _frontendConsole.CreatePet(newPet);
                     Console.WriteLine("Press the Enter key to continue.");
                     readResult = Console.ReadLine();
                     break;
@@ -67,7 +66,7 @@ public sealed class PetShopProgram
 
                 case "5":
                     var incompletePet = new Pet();
-                    _frontendConsole.EditCompleteAge(incompletePet, _petsRepository);
+                    _frontendConsole.EditCompleteAge(incompletePet);
                     Console.WriteLine("The animal age is complete");
                     readResult = Console.ReadLine();
                     break;

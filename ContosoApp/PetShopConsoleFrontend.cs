@@ -2,20 +2,19 @@
 
 public sealed class PetShopConsoleFrontend
 {
-    public void CreatePet(Pet pet)
+    public Pet CreatePet()
     {
         string readResult;
         bool validEntry = false;
-        int petAge;
+        var newPet = new Pet();
 
-        // Prompt the user to enter the following animal species a dog, cat, rabbit
         do
         {
             Console.WriteLine("\n\rEnter 'dog' or 'cat' or 'rabbit' to begin a new entry");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                pet.AnimalSpecies = readResult.ToLower();
+                newPet.AnimalSpecies = readResult.ToLower();
                 TODO_Refactor.MakePet(ref validEntry, readResult);
                 //validEntry = pet.AnimalSpecies == "dog" || pet.AnimalSpecies == "cat" || pet.AnimalSpecies == "rabbit";
             }
@@ -25,15 +24,16 @@ public sealed class PetShopConsoleFrontend
         // get the pet's age. can be ? at initial entry.
         do
         {
+            int petAge;
             Console.WriteLine("Enter the pet's age or enter ? if unknown");
             readResult = Console.ReadLine();
 
             if (readResult != null)
             {
-                pet.AnimalAge = readResult;
-                if (pet.AnimalAge != "?")
+                newPet.AnimalAge = readResult;
+                if (newPet.AnimalAge != "?")
                 {
-                    validEntry = int.TryParse(pet.AnimalAge, out petAge);
+                    validEntry = int.TryParse(newPet.AnimalAge, out petAge);
                 }
                 else
                 {
@@ -50,14 +50,14 @@ public sealed class PetShopConsoleFrontend
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                pet.AnimalPhysicalDescription = readResult.ToLower();
-                if (pet.AnimalPhysicalDescription == "")
+                newPet.AnimalPhysicalDescription = readResult.ToLower();
+                if (newPet.AnimalPhysicalDescription == "")
                 {
-                    pet.AnimalPhysicalDescription = "tbd";
+                    newPet.AnimalPhysicalDescription = "tbd";
                 }
             }
 
-        } while (pet.AnimalPhysicalDescription == "");
+        } while (newPet.AnimalPhysicalDescription == "");
 
         // get a description of the pet's personality - animalPersonalityDescription can be blank.
         do
@@ -66,14 +66,14 @@ public sealed class PetShopConsoleFrontend
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                pet.AnimalPersonalityDescription = readResult.ToLower();
-                if (pet.AnimalPersonalityDescription == "")
+                newPet.AnimalPersonalityDescription = readResult.ToLower();
+                if (newPet.AnimalPersonalityDescription == "")
                 {
-                    pet.AnimalPersonalityDescription = "tbd";
+                    newPet.AnimalPersonalityDescription = "tbd";
                 }
             }
 
-        } while (pet.AnimalPersonalityDescription == "");
+        } while (newPet.AnimalPersonalityDescription == "");
 
         // get the pet's nickname. animalNickname can be blank.
         do
@@ -83,31 +83,32 @@ public sealed class PetShopConsoleFrontend
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                pet.AnimalNickname = readResult.ToLower();
-                if (pet.AnimalNickname == "")
+                newPet.AnimalNickname = readResult.ToLower();
+                if (newPet.AnimalNickname == "")
                 {
-                    pet.AnimalNickname = "tbd";
+                    newPet.AnimalNickname = "tbd";
                 }
             }
 
-        } while (pet.AnimalNickname == "");
+        } while (newPet.AnimalNickname == "");
+
+        return newPet;
     }
 
     public void DisplayPetInformation(Pet pet)
         => Console.WriteLine(pet.ToString());
 
-    public void EditCompleteAge(Pet age, PetsRepository petRepository)
+    public void EditCompleteAge(Pet age)
     {
         string readResult;
         bool validEntry = false;
-        int petAge;
 
         do
         {
             Console.WriteLine("Enter pet ID: ");
             readResult = Console.ReadLine();
             // deleted the extra pet object
-            petRepository.FindPetById(readResult);
+            //UNDONE petRepository.FindPetById(readResult);
 
             Console.WriteLine("Complete pet age: ");
             readResult = Console.ReadLine();
@@ -118,7 +119,7 @@ public sealed class PetShopConsoleFrontend
 
                 if (age.AnimalAge == null || age.AnimalAge == "?")
                 {
-                    validEntry = int.TryParse(age.AnimalAge, out petAge);
+                    validEntry = int.TryParse(age.AnimalAge, out var petAge);
                 }
 
                 else
