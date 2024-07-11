@@ -10,8 +10,6 @@ public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
         ourPets = new Dictionary<Guid, Pet>();
     }
 
-    public IEnumerable<Pet> GetAllPets() => ourPets.Values;
-
     public void AddPet(Pet pet)
     {
         //string animalID = GetNextID().ToString();
@@ -20,7 +18,7 @@ public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
 
     // The business logic
     // Defining a method that is resposible mplementing for searching and finding pets by ID
-    public PetsRepository FindPetById(string petId)
+    public void FindPetById(string petId)
     {
     //PetsRepository petID = new PetsRepository();
         foreach (var ID in ourPets.Keys)
@@ -30,8 +28,10 @@ public sealed class PetsRepository //: IEnumerable<KeyValuePair<Guid, Pet>>
                 Console.WriteLine($"The animal ID is: {petId}");
             }
         }
-        return this;
     }
+
+    public IEnumerable<Pet> GetAllPets()
+        => ourPets.Values;
 }
 
 /*public int GetNextID()

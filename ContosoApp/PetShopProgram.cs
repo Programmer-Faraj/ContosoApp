@@ -3,19 +3,20 @@
 public sealed class PetShopProgram
 {
     private readonly NewBusinessLogic _allPets;
+    private readonly DisplayPets _frontendConsole = new();
     private readonly PetManager _parsePet = new();
-    private string? _menuSelection = "";
-    private readonly DisplayPets _pets = new();
-    private string _readResult;
-    private readonly PetsRepository _repository = new();
+    private readonly PetsRepository _petsRepository = new();
 
     public PetShopProgram()
     {
-        _allPets = new NewBusinessLogic(_repository, _pets);
+        _allPets = new NewBusinessLogic(_petsRepository, _frontendConsole);
     }
 
     public void Run()
     {
+        string? menuSelection = "";
+        string readResult;
+
         do
         {
             Console.Clear();
@@ -34,30 +35,29 @@ public sealed class PetShopProgram
 
             // display the top-level menu options
 
-            _readResult = Console.ReadLine();
-            if (_readResult != null)
+            readResult = Console.ReadLine();
+            if (readResult != null)
             {
-                _menuSelection = _readResult.ToLower();
+                menuSelection = readResult.ToLower();
                 // NOTE: We could put a do statement around the menuSelection entry to ensure a valid entry, but we
                 //  use a conditional statement below that only processes the valid entry values, so the do statement
                 //  is not required here.
             }
 
-            // use switch-case to process the selected menu option
-            switch (_menuSelection)
+            switch (menuSelection)
             {
                 case "1":
                     _allPets.ProvideUserAllItems();
                     Console.WriteLine("Press the Enter key to continue.");
-                    _readResult = Console.ReadLine();
+                    readResult = Console.ReadLine();
                     break;
 
                 case "2":
                     var newPet = new Pet();
-                    _repository.AddPet(newPet);
+                    _petsRepository.AddPet(newPet);
                     _parsePet.CreatePet(newPet);
                     Console.WriteLine("Press the Enter key to continue.");
-                    _readResult = Console.ReadLine();
+                    readResult = Console.ReadLine();
                     break;
 
                 case "3":
@@ -67,14 +67,14 @@ public sealed class PetShopProgram
                 case "4":
 
                     Console.WriteLine("The animal physical descriptions are complete");
-                    _readResult = Console.ReadLine();
+                    readResult = Console.ReadLine();
                     break;
 
                 case "5":
                     var incompletePet = new Pet();
-                    _parsePet.EditCompleteAge(incompletePet, _repository);
+                    _parsePet.EditCompleteAge(incompletePet, _petsRepository);
                     Console.WriteLine("The animal age is complete");
-                    _readResult = Console.ReadLine();
+                    readResult = Console.ReadLine();
                     break;
 
                 case "6":
@@ -94,6 +94,6 @@ public sealed class PetShopProgram
                     break;
             }
 
-        } while (_menuSelection != "exit");
+        } while (menuSelection != "exit");
     }
 }

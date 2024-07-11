@@ -34,5 +34,4 @@ public sealed class NewBusinessLogic
         }
         return null;
     }*/
-
 }
