@@ -3,12 +3,11 @@
 public sealed class PetShopProgram
 {
     private readonly NewBusinessLogic _allPets;
-    private readonly PetManager _parsePet = new PetManager();
+    private readonly PetManager _parsePet = new();
     private string? _menuSelection = "";
-    private Pet _pet = new Pet();
-    private readonly DisplayPets _pets = new DisplayPets();
+    private readonly DisplayPets _pets = new();
     private string _readResult;
-    private readonly PetsRepository _repository = new PetsRepository();
+    private readonly PetsRepository _repository = new();
 
     public PetShopProgram()
     {
@@ -54,8 +53,9 @@ public sealed class PetShopProgram
                     break;
 
                 case "2":
-                    _repository.AddPet(_pet);
-                    _parsePet.CreatePet(_pet);
+                    var newPet = new Pet();
+                    _repository.AddPet(newPet);
+                    _parsePet.CreatePet(newPet);
                     Console.WriteLine("Press the Enter key to continue.");
                     _readResult = Console.ReadLine();
                     break;
@@ -71,7 +71,8 @@ public sealed class PetShopProgram
                     break;
 
                 case "5":
-                    _parsePet.EditCompleteAge(_pet, _repository);
+                    var incompletePet = new Pet();
+                    _parsePet.EditCompleteAge(incompletePet, _repository);
                     Console.WriteLine("The animal age is complete");
                     _readResult = Console.ReadLine();
                     break;
